@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Check Service Details - Royal Enfield Workshop</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('background.png'); /* Replace with your background */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+    }
+    .wrapper {
+      background: rgba(0, 0, 0, 0.4);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+      padding: 20px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.4);
+    }
+    .header img { height: 80px; margin-bottom: 10px; }
+    .header h1 { margin:0; font-size:70px; color: rgb(23,22,95); }
+    .contact-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      font-size: 20px;
+    }
+    .contact-row div { margin: 5px 0; }
+    .contact-row a { color:white; text-decoration:none; font-weight:bold; }
+    .search-card {
+      max-width: 500px;
+      margin: 0 auto 30px auto;
+      padding: 20px;
+      text-align: center;
+      font-size: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+    .search-card input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+    }
+    .search-card button {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background: black;
+      color: white;
+      cursor: pointer;
+    }
+    #result { max-width: 500px; margin: 0 auto; }
+    .service-card {
+      background: rgba(255,255,255,0.95);
+      color: black;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      font-family: 'Courier New', monospace;
+    }
+    .service-card h3 {
+      margin: 0 0 10px 0;
+      text-align: center;
+      text-decoration: underline;
+    }
+    .service-card p { margin: 5px 0; font-size: 16px; }
+    .service-card .total { font-weight: bold; font-size: 18px; text-align: right; margin-top: 10px; }
+    @media (max-width: 600px) {
+      .contact-row { flex-direction: column; text-align: center; }
+      .search-card input { width: 95%; }
+      .service-card { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <!-- Header -->
+  <div class="header">
+    <img src="logo.png" alt="Royal Enfield Logo"> <!-- Replace with your logo -->
+    <h1>Royal Enfield Workshop</h1>
+    <div class="contact-row">
+      <div>Contact Us: <a href="tel:123456789">123456789</a></div>
+      <div>Email: <a href="mailto:royalenfield@example.com">royalenfield@example.com</a></div>
+    </div>
+  </div>
+
+  <!-- Search form -->
+  <div class="search-card">
+    <h4>Check Your Bike Service Details</h4>
+    <input id="vehicle" placeholder="Enter Vehicle Number">
+    <button onclick="search(document.getElementById('vehicle').value)">Search</button>
+  </div>
+
+  <!-- Service results -->
+  <div id="result"></div>
+</div>
+
+<!-- Link to your external JS file -->
+<script src="service.js"></script>
+</body>
+</html>
