@@ -10,24 +10,29 @@ function save() {
     return;
   }
 
-  const vehicleNo = vehicle.value.toUpperCase();
-  const mobileNo = mobile.value;
+  const vehicleNo = document.getElementById("vehicle").value.toUpperCase();
+  const mobileNo  = document.getElementById("mobile").value;
 
   fetch(URL, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       action: "save",
       token: token,
       vehicle: vehicleNo,
-      name: name.value,
+      name: document.getElementById("name").value,
       mobile: mobileNo,
-      model: model.value,
-      details: details.value,
-      amount: amount.value
+      model: document.getElementById("model").value,
+      details: document.getElementById("details").value,
+      amount: document.getElementById("amount").value
     })
   })
   .then(res => res.json())
   .then(response => {
+
+    console.log(response); // 👈 very important
 
     if (response.status !== "success") {
       alert("Session expired. Please login again.");
@@ -49,6 +54,9 @@ Thank you 🙏`;
     window.open(whatsappURL, "_blank");
 
     alert("Service saved & WhatsApp link opened!");
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Something went wrong!");
   });
 }
-
