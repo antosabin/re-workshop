@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Enfield Workshop</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #667eea, #764ba2, #6B73FF, #000DFF);
+  background-size: 400% 400%;
+  animation: gradientBG 12s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.login-container {
+  width: 350px;
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  color: #fff;
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 24px;
+  color: #fff;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #f0f0f0;
+}
+
+.input-group span {
+  color: #fff; /* make eye icon visible */
+  font-size: 16px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.input-group span {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #333;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #ffffff;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #f1f1f1;
+}
+
+button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #ffb3b3;
+  font-size: 13px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="login-container">
+  <h1>Royal Enfield Workshop</h1>
+  <h2>Admin Login</h2>
+
+  <div class="error-message" id="error"></div>
+
+  <div class="input-group">
+    <input type="text" id="username" placeholder="Username" required>
+  </div>
+
+  <div class="input-group">
+    <input type="password" id="password" placeholder="Password" required>
+    <span onclick="togglePassword()">👁</span>
+  </div>
+
+  <button id="loginBtn" onclick="login()">Login</button>
+</div>
+
+<script>
+const URL = "PASTE_YOUR_WEB_APP_URL";
+
+function togglePassword() {
+  const password = document.getElementById("password");
+  password.type = password.type === "password" ? "text" : "password";
+}
+
+function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  const errorDiv = document.getElementById("error");
+  const button = document.getElementById("loginBtn");
+
+  errorDiv.textContent = "";
+
+  if (!username || !password) {
+    errorDiv.textContent = "Please enter username and password.";
+    return;
+  }
+
+  button.classList.add("loading");
+  button.textContent = "Logging in...";
+
+  fetch(URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      action: "login",
+      username: username,
+      password: password
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === "success") {
+      localStorage.setItem("adminToken", data.token);
+      window.location.href = "admin.html";
+    } else {
+      errorDiv.textContent = "Invalid username or password.";
+    }
+  })
+  .catch(() => {
+    errorDiv.textContent = "Server error. Please try again.";
+  })
+  .finally(() => {
+    button.classList.remove("loading");
+    button.textContent = "Login";
+  });
+}
+</script>
+
+</body>
+</html>

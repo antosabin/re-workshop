@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - Royal Enfield Workshop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #f5c518;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      background: #f5c518;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #d4a017;
+    }
+
+    .logout-btn {
+      background: #ff4d4d;
+      margin-top: 10px;
+    }
+
+    .logout-btn:hover {
+      background: #cc0000;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Admin - Add Service</h2>
+
+  <input type="text" id="vehicle" placeholder="Vehicle Number" required>
+  <input type="text" id="name" placeholder="Customer Name" required>
+  <input type="text" id="mobile" placeholder="Mobile Number" required>
+  <input type="text" id="model" placeholder="Bike Model" required>
+  <textarea id="details" placeholder="Service Details (Oil Change, Brake Check etc.)"></textarea>
+  <input type="number" id="amount" placeholder="Total Amount (₹)" required>
+
+  <button onclick="save()">Save & Send WhatsApp</button>
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<script>
+
+// Check if admin token exists
+const token = localStorage.getItem("adminToken");
+
+if (!token) {
+  window.location.href = "login.html";
+}
+
+function logout() {
+  localStorage.removeItem("adminToken");
+  window.location.href = "login.html";
+}
+</script>
+
+<script src="admin.js"></script>
+
+</body>
+</html>
