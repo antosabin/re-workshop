@@ -1,5 +1,5 @@
 // Replace with your Web App URL from Google Apps Script
-const API_URL = 'YOUR_WEB_APP_URL_HERE';
+const API_URL = 'https://script.google.com/macros/s/AKfycby03P2g532JwgVQqRZYJA4V84-oABdx8YWYUy9eqin6ZofiymijT7Ndha0NmqY5w9hx8A/exec';
 
 async function search(vehicleNumber) {
   const resultDiv = document.getElementById('result');
@@ -50,3 +50,4 @@ async function search(vehicleNumber) {
     resultDiv.innerHTML = '<p style="text-align:center; color:white;">Error fetching service data.</p>';
   }
 }
+
