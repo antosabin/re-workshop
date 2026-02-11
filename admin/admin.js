@@ -1,4 +1,4 @@
-const URL = "https://script.google.com/macros/s/AKfycbzecarRGMJUyFIvH3XGmfMBTjgvqRzIp_YchWfWbPyXRzXNlEMQ5U9L1-im8LZM6XfY_g/exec";
+const URL = "https://script.google.com/macros/s/AKfycbzl7B4gumTYYNhH91qkUsZyKlYG91w7BynHoXZR7b1MNmRv9Hj1qRAdynu4m3-koh-Auw/exec";
 
 function save() {
 
@@ -51,3 +51,4 @@ Thank you 🙏`;
     alert("Service saved & WhatsApp link opened!");
   });
 }
+
